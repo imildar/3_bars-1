@@ -24,8 +24,8 @@ def get_smallest_bar(data):
 def get_closest_bar(my_longitude_in_radian, my_latitudes_in_radian):
     way_min_value = 9999999
     radius_of_the_earth = 6378137 
-    for element_SeatsCount in parsed_string:
-        coordinates = element_SeatsCount['Cells']['geoData']['coordinates'] 
+    for string_bar in parsed_string:
+        coordinates = string_bar['Cells']['geoData']['coordinates'] 
         latitudes_in_radians = math.radians(coordinates[0])
         longitude_in_radians = math.radians(coordinates[1]) 
         way_value = round(radius_of_the_earth * math.acos(math.sin(longitude_in_radians)
@@ -34,7 +34,7 @@ def get_closest_bar(my_longitude_in_radian, my_latitudes_in_radian):
                 * math.cos(latitudes_in_radians - my_latitudes_in_radian)))
         if way_value < way_min_value:
             way_min_value = way_value
-            name = element_SeatsCount['Cells']['Name']    
+            name = string_bar['Cells']['Name']    
         return name
 
 
@@ -54,7 +54,7 @@ if __name__ == '__main__':
         my_value_latitudes=float(input("Введитете значение широты\n"))
         my_longitude_in_radians = math.radians(my_value_longitude)
         my_latitudes_in_radians = math.radians(my_value_latitudes)
-        print ("Самый близкий бар - ", get_closest_bar(my_longitude_in_radians, my_latitudes_in_radians)) 
+        print ("Самый близкий бар - ",get_closest_bar(my_longitude_in_radians, my_latitudes_in_radians)) 
     
 
          
